@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-wrapper">
     <nav class="navbar navbar-dark fixed-top px-3" :style="{ backgroundColor: themeColor }">
       <div class="container-fluid d-flex flex-wrap align-items-center gap-3">
         <span class="navbar-brand mb-0 h1">鬼话翻译器</span>
@@ -44,12 +44,12 @@
               <label class="switch-label" for="reverseMode"></label>
             </div>
           </div>
-        </div>
       </div>
     </div>
-    <div class="d-flex justify-content-center" style="padding-top: 54px;">
-      <div class="container" style="max-width: 1000px;">
-        <div class="row mt-4" style="height: 35dvh">
+  </div>
+    <div class="d-flex justify-content-center main-content">
+      <div class="container" style="height: max-content;">
+        <div id="guilang-translator-main" class="row" style="margin: 10px 0 0 0;">
           <div class="col-md-6 mb-3" style="height: 100%">
             <NBTextBlock
               title="说人话"
@@ -70,6 +70,10 @@
         </div>
       </div>
     </div>
+    <div class="footer">
+      <hr style="margin: 1rem 14px;">
+      <p style="padding: 0 20px;">Made By Xzgyo at 中国上海</p>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
@@ -77,8 +81,8 @@ import { ref, computed, watchEffect } from 'vue';
 import NBTextBlock from './NBTextBlock.vue';
 
 const themeColor = ref<string>('#0d6efd');
-const zeroChar = ref<string>('人');
-const oneChar = ref<string>('鬼');
+const zeroChar = ref<string>('九');
+const oneChar = ref<string>('一');
 const inputText = ref('');
 const outputText = ref('');
 const reverseMode = ref(false);
@@ -118,34 +122,7 @@ watchEffect(() => {
   } else {
     inputText.value = decodedGui.value
   }
-})
-
-/* const translatedBinary = computed(() => {
-  const text = inputText.value;
-  let binary = '';
-  for (let i = 0; i < text.length; i++)
-    binary += text.charCodeAt(i).toString(2).padStart(8, '0');
-
-  return binary
-    .split('')
-    .map(b => (b === '0' ? zeroChar.value : oneChar.value))
-    .join('');
 });
-
-const reversedText = computed(() => {
-  const binary = translatedBinary.value
-    .split('')
-    .map(c => (c === zeroChar.value ? '0' : c === oneChar.value ? '1' : ''))
-    .join('');
-
-  const chars: string[] = [];
-  for (let i = 0; i < binary.length; i += 8) {
-    const byte = binary.slice(i, i + 8);
-    if (byte.length === 8)
-      chars.push(String.fromCharCode(parseInt(byte, 2)));
-  }
-  return chars.join('');
-}); */
 </script>
 
 <style scoped>
@@ -163,5 +140,26 @@ textarea {
 
 #settings-page > *:not(:first-child) {
   margin-top: 16px;
+}
+
+#guilang-translator-main > * {
+  height: 450px !important;
+  max-height: calc(100dvh - 78px) !important;
+}
+
+.page-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.main-content {
+  flex: 1;
+  padding-top: 50px;
+}
+
+.footer {
+  margin-top: auto;
 }
 </style>
