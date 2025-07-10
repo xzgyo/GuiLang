@@ -7,7 +7,7 @@
           <button class="btn btn-light" style="padding: 4px 8px" type="button" data-bs-toggle="offcanvas" data-bs-target="#settings-panel" aria-controls="staticBackdrop">
             <i class="bi bi-gear"></i> 设置
           </button>
-          <a class="text-white" style="text-decoration: none !important;">Made by Xzgyo at 中国上海</a>
+          <a class="text-white" style="text-decoration: none !important;">By Xzgyo</a>
         </div>
         <!--input
           type="color"
